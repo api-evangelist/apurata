@@ -1,0 +1,50 @@
+generated: '2026-07-18'
+method: searched
+source: openapi/apurata-acuotaz-pos-openapi.yml
+docs: https://docs.apurata.com/POS/rest_api/authentication/
+summary:
+  types:
+  - http
+  - apiKey
+  api_key_in:
+  - header
+  notes: >-
+    aCuotaz uses a per-merchant secret token as an HTTP Bearer credential over
+    mandatory HTTPS. Two additional header credentials appear on specific
+    operations: Client_id (identifies the merchant for the checkout widget
+    endpoints) and X-Unique-Token (an idempotency token required on refunds).
+    Webhooks delivered by Apurata carry their own Apurata-Auth Bearer header that
+    the merchant validates. There is no OAuth surface.
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: 'Merchant secret token issued by Apurata, sent as Authorization: Bearer <secret_token>. HTTPS is mandatory.'
+  applies_to: all /pos/order and /pos/client operations
+  sources:
+  - openapi/apurata-acuotaz-pos-openapi.yml
+- name: clientIdHeader
+  type: apiKey
+  in: header
+  parameter_name: Client_id
+  description: Merchant client id used to authenticate the checkout widget endpoints (pay-with-apurata-add-on, info-steps).
+  sources:
+  - openapi/apurata-acuotaz-pos-openapi.yml
+- name: uniqueTokenHeader
+  type: apiKey
+  in: header
+  parameter_name: X-Unique-Token
+  description: Caller-generated idempotency token required on total-refund and partial-refund to prevent duplicate refunds.
+  sources:
+  - openapi/apurata-acuotaz-pos-openapi.yml
+- name: webhookAuth
+  type: http
+  scheme: bearer
+  parameter_name: Apurata-Auth
+  description: >-
+    Bearer credential Apurata includes on outbound webhook POSTs
+    (header "Apurata-Auth: Bearer <secret_token>"); merchant validation is
+    optional but recommended.
+  direction: inbound-to-merchant
+  sources:
+  - https://docs.apurata.com/POS/webhooks/
