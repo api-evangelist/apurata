@@ -1,0 +1,24 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Apurata aCuotaz POS REST API
+  version: 1.0.0
+extends: openapi/apurata-acuotaz-pos-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provenance: generated-from-docs
+    x-apievangelist-source: https://docs.apurata.com/POS/rest_api/
+    x-apievangelist-idempotency: order_id (create) + X-Unique-Token (refunds)
+- target: $.paths['/pos/order/create'].post
+  update:
+    x-idempotency:
+      key: order_id
+      behavior: re-submitting an existing order_id returns status already_created
+- target: $.paths['/pos/order/{order_id}/total-refund'].post
+  update:
+    x-idempotency:
+      header: X-Unique-Token
+- target: $.paths['/pos/order/{order_id}/partial-refund'].post
+  update:
+    x-idempotency:
+      header: X-Unique-Token

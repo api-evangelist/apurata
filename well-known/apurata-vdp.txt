@@ -1,0 +1,105 @@
+# Apurata Vulnerability Disclosure Policy (VDP)
+
+This policy explains how security researchers can report vulnerabilities to Apurata responsibly and how we handle those reports.
+
+## Purpose
+
+We value the contributions of the security community and strive to fix vulnerabilities quickly and responsibly, protecting our customers and systems.
+
+## Scope
+
+- In scope (priority):
+  - Core production web properties operated by Apurata
+- In scope (lower priority):
+  - Android app: "Apurata Mejores Prestamos"
+- Any sandbox, staging, or demo services are out of scope unless explicitly authorized in writing.
+- We may expand or clarify scope over time; see testing limitations below.
+
+## How to report
+
+- Contact: `security@apurata.com`
+- Channel: Email only (preferred). We accept reports 24/7 and review them during Peru business hours (UTC−05:00).
+- Follow-up: We will communicate and track the report by email.
+
+## What to include (report template)
+
+Please provide a concise, reproducible report:
+
+1. Title and summary
+2. Affected asset(s): domain, endpoint, app/package, version/build
+3. Impact: what an attacker can achieve; data at risk; authentication/authorization context. Include a one-sentence impact statement (e.g., "exfiltrates all user data without authentication").
+4. Severity suggestion (CVSS v3.1 vector if possible)
+5. Step-by-step reproduction with minimal PoC (avoid exfiltrating real data)
+6. Requirements and environment (browser, OS, device, network, account state)
+7. Logs or evidence (screenshots, requests/responses with sensitive data redacted)
+8. Suggested remediation (if any)
+9. Your contact and preferred credit name/alias (or request to remain anonymous)
+
+## Service levels (SLA)
+
+- Acknowledgement: within 3 business days
+- Triage and initial assessment: within 7 business days
+- Remediation targets (guidance, may vary by complexity):
+  - Critical: 30 days
+  - High: 60 days
+  - Medium: 90 days
+  - Low: 120 days
+- We provide periodic updates at key milestones or upon material changes.
+- Remediation timelines may vary depending on third-party dependencies and technical complexity.
+
+## Testing guidelines and limitations
+
+To protect users and availability, you must:
+
+- Do not exfiltrate, view, or store real personal data (PII). Use the minimum data needed to demonstrate impact and redact PII in evidence.
+- Stop on impact: once you confirm a vulnerability exists, stop further exploitation.
+- Do not modify, destroy, or disrupt data.
+- Do not affect availability (no DoS/DDoS, no resource exhaustion, no spam).
+- Do not attempt social engineering, phishing, or physical security testing.
+- Do not target third-party providers or assets we do not own.
+- No automated brute-forcing of credentials or rate-limit stress testing.
+ - Automated scanners are permitted only if configured to be non-intrusive and must not impact availability.
+ - Light fuzzing of endpoints is allowed; flooding or high-volume traffic is not.
+
+If you discover exposed credentials or access tokens, stop, report immediately, and do not attempt reuse.
+
+## Safe harbor
+
+We will not pursue legal action against you for good-faith, compliant research under this policy. Specifically, if you:
+
+- Make a good-faith effort to avoid privacy violations, data destruction, or service disruption
+- Do not access more data than necessary to demonstrate the vulnerability
+- Do not share or publicly disclose vulnerability details without our written consent and before a mutually agreed timeline
+- Report promptly and work with us to remediate
+
+These commitments do not prevent us from cooperating with lawful investigations. Your research must comply with applicable laws, including data protection regulations.
+
+## Severity and triage
+
+We assess findings using CVSS v3.1 and business impact. We may adjust severity after triage. Duplicate reports are closed as duplicates; the first valid reporter receives credit.
+
+## Rewards and recognition
+
+- We do not operate a public bug bounty program. Certain critical vulnerabilities may be eligible for discretionary rewards at Apurata's sole discretion.
+- If a monetary bounty is offered, the default structure is 50/50 staged: 50% upon acceptance after we reproduce a minimally sufficient PoC that demonstrates impact in our environment; 50% after full verification and remediation plan initiation. All terms will be agreed in writing.
+- Bounties are not paid for duplicates, known issues, policy violations, or out-of-scope findings. We may require invoicing details and identity verification consistent with applicable regulations.
+
+## Privacy and data handling
+
+- Please anonymize any information that can identify individuals in your report (e.g., name, DNI, phone, email, address) in line with Peruvian personal data protection rules.
+- Handling of personal data must comply with Peru's Personal Data Protection Law (Ley N° 29733).
+- We do not share your personal data externally except as required by law or with your explicit consent (e.g., Hall of Fame credit).
+- Upon request, we will delete or anonymize your personal data from our vulnerability response records unless retention is required by applicable law or ongoing remediation.
+
+## Languages and hours
+
+- Preferred languages: Spanish or English
+- Working hours: Peru (UTC−05:00). Reports are accepted at any time and reviewed during business hours.
+
+## Hall of Fame
+
+With your consent, we will credit valid, impactful reports at: `https://apurata.com/security/hall-of-fame` (URL subject to publication). Impactful typically means validated in production with Medium or higher severity.
+
+## Changes to this policy
+
+We may update this policy over time. The latest version will be linked from our `security.txt` file.

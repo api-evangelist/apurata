@@ -1,0 +1,87 @@
+openapi: 3.0.3
+info:
+  title: Apurata aCuotaz POS REST config widgets API
+  version: '1.0'
+  x-apievangelist-generated: '2026-07-18'
+  x-apievangelist-method: generated
+  x-apievangelist-source: https://docs.apurata.com/POS/rest_api/
+  description: Merchant-facing REST API for the aCuotaz "buy now, pay later" installment financing product operated by Apurata (Tecno Creditos S.A.C., Peru). Lets an e-commerce merchant fetch financing limits, create and manage installment orders, confirm/cancel orders, issue total or partial refunds, and render the aCuotaz checkout widgets. Transcribed faithfully from the public documentation at docs.apurata.com; not published by Apurata as an OpenAPI file.
+  contact:
+    name: Apurata aCuotaz Integrations
+    url: https://docs.apurata.com/POS/intro/
+  license:
+    name: Proprietary
+servers:
+- url: https://apurata.com
+  description: Production (test and live behavior are selected by the client_id / secret token issued)
+tags:
+- name: widgets
+  description: Embeddable checkout widgets (HTML)
+paths:
+  /pos/pay-with-apurata-add-on/{amount}:
+    get:
+      tags:
+      - widgets
+      operationId: getAddOnWidget
+      summary: Get aCuotaz add-on widget
+      description: Retrieve a styled HTML/CSS widget that shows installment financing options for a given purchase amount. Authenticated with the Client_id header.
+      parameters:
+      - name: amount
+        in: path
+        required: true
+        schema:
+          type: number
+          format: float
+      - name: Client_id
+        in: header
+        required: true
+        schema:
+          type: string
+        description: Your aCuotaz client id
+      responses:
+        '200':
+          description: HTML widget
+          content:
+            text/html:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /pos/{client_id}/info-steps:
+    get:
+      tags:
+      - widgets
+      operationId: getInfoSteps
+      summary: Get aCuotaz info-steps widget
+      description: Retrieve a styled HTML widget describing the aCuotaz steps, requirements, and payment options for a checkout page.
+      parameters:
+      - name: client_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: HTML widget
+          content:
+            text/html:
+              schema:
+                type: string
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Secret token issued by Apurata, sent as Authorization: Bearer <secret_token>. HTTPS is mandatory.'

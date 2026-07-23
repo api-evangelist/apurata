@@ -1,0 +1,67 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/apurata
+note: >-
+  Apurata does not publish traditional language SDK client libraries on npm/PyPI.
+  Its first-party client surface is a set of official e-commerce payment-gateway
+  plugins and storefront widget frameworks, published in the apurata GitHub
+  organization, that integrate the aCuotaz REST API and webhooks into each
+  platform's checkout.
+packages:
+- platform: WooCommerce
+  language: php
+  registry: github
+  name: woocommerce-acuotaz-payment-gateway
+  url: https://github.com/apurata/woocommerce-acuotaz-payment-gateway
+  license: GPL-3.0
+  official: true
+- platform: WooCommerce
+  language: shell
+  registry: github
+  name: tecno-tiendaz
+  url: https://github.com/apurata/tecno-tiendaz
+  license: GPL-3.0
+  official: true
+  description: WooCommerce plugin to finance purchases with Apurata.
+- platform: Magento 2
+  language: php
+  registry: github
+  name: magento2-acuotaz-payment-gateway
+  url: https://github.com/apurata/magento2-acuotaz-payment-gateway
+  official: true
+- platform: Shopify
+  language: liquid
+  registry: github
+  name: shopify-framework-acuotaz-widgets
+  url: https://github.com/apurata/shopify-framework-acuotaz-widgets
+  official: true
+- platform: VTEX
+  language: typescript
+  registry: github
+  name: vtex-framework-acuotaz-widgets
+  url: https://github.com/apurata/vtex-framework-acuotaz-widgets
+  official: true
+- platform: VTEX
+  language: css
+  registry: github
+  name: vtex-integrations
+  url: https://github.com/apurata/vtex-integrations
+  official: true
+- platform: Salesforce Commerce
+  language: javascript
+  registry: github
+  name: salesforce-acuotaz-payment-gateway
+  url: https://github.com/apurata/salesforce-acuotaz-payment-gateway
+  official: true
+- platform: OpenCart 3
+  language: php
+  registry: github
+  name: opencart3-acuotaz-payment-gateway
+  url: https://github.com/apurata/opencart3-acuotaz-payment-gateway
+  official: true
+- platform: PrestaShop
+  language: php
+  registry: github
+  name: prestashop-acuotaz-payment-gateway
+  url: https://github.com/apurata/prestashop-acuotaz-payment-gateway
+  official: true

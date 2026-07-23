@@ -1,0 +1,21 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.apurata.com/POS/
+versioning:
+  scheme: unversioned-path
+  note: >-
+    The aCuotaz POS REST API path is not versioned. Product variants are versioned
+    in the documentation: Downpayment In-House v1-v4, and a Samsung Finance+
+    aCuotaz OpenAPI v1.
+  docs: https://docs.apurata.com/POS/downpayment_inhouse/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal deprecation policy or RFC 8594 Sunset/Deprecation header support is documented.
+sla:
+  url: null
+status_page: null
+order_expiration:
+  docs: https://docs.apurata.com/POS/order_expiration/
+  note: Orders support an expiration_ts and documented order-expiration behavior.
+deprecated_operations: []

@@ -1,0 +1,36 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/apurata-acuotaz-pos-openapi.yml
+entities:
+- name: PosClient
+  description: Merchant account identified by pos_client_id / Client_id.
+  id_field: pos_client_id
+- name: Order
+  description: An installment-financing order created for a purchase.
+  id_field: order_id
+  fields: [amount, status, magic_link, expiration_ts, customer_data, financed_products]
+  statuses: [initial, created, approved, onhold, validated, funded, rejected, canceled]
+- name: FinancedProduct
+  description: A line item within an order's financed_products array.
+- name: Refund
+  description: A total or partial refund against an order, keyed by X-Unique-Token.
+  fields: [amount, author, reason, refund_method, tracking_id, status]
+- name: Customer
+  description: End buyer, described by customer_data (embedded in the order).
+relationships:
+- from: Order
+  to: PosClient
+  type: belongs_to
+  via: pos_client_id
+- from: Order
+  to: FinancedProduct
+  type: has_many
+  via: financed_products
+- from: Order
+  to: Customer
+  type: has_one
+  via: customer_data
+- from: Refund
+  to: Order
+  type: belongs_to
+  via: order_id

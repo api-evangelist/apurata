@@ -1,0 +1,35 @@
+# Apurata
+
+> Apurata (Tecno Creditos S.A.C.) is a Peruvian fintech, authorized by Peru's SBS, offering fast online personal loans and the aCuotaz "buy now, pay later" installment product for e-commerce merchants. Merchants integrate installment checkout via a REST API, webhooks, and prebuilt payment-gateway plugins; Apurata pays the merchant upfront while the customer repays in up to 8 installments.
+
+## APIs
+- [aCuotaz POS REST API](https://docs.apurata.com/POS/rest_api/): Create and manage installment orders, refunds, and checkout widgets. Base URL https://apurata.com.
+- [aPagos REST API](https://docs.apurata.com/apagos/rest_api/): Apurata's aPagos payments product.
+- [Samsung Finance+ aCuotaz API v1](https://docs.apurata.com/samsung_finance_plus/sfplus/): Financing application + credit prefetch API for the Samsung Finance+ program.
+
+## Specs
+- [OpenAPI (aCuotaz POS, generated)](openapi/apurata-acuotaz-pos-openapi.yml)
+- [AsyncAPI (order webhooks, generated)](asyncapi/apurata-acuotaz-asyncapi.yml)
+
+## Docs
+- [Developer docs home](https://docs.apurata.com/POS/intro/)
+- [Authentication](https://docs.apurata.com/POS/rest_api/authentication/)
+- [Create order](https://docs.apurata.com/POS/rest_api/create_order/)
+- [Order information](https://docs.apurata.com/POS/rest_api/order_information/)
+- [Webhooks](https://docs.apurata.com/POS/webhooks/)
+- [Testing / sandbox](https://docs.apurata.com/POS/testing/)
+- [Order expiration](https://docs.apurata.com/POS/order_expiration/)
+- [Checkout options](https://docs.apurata.com/POS/checkout_options/)
+
+## Integrations
+- [GitHub organization](https://github.com/apurata): WooCommerce, Magento 2, Shopify, VTEX, Salesforce, OpenCart, and PrestaShop payment-gateway plugins and widget frameworks.
+
+## Security
+- [security.txt](https://apurata.com/.well-known/security.txt)
+- [Vulnerability Disclosure Policy](https://apurata.com/.well-known/vdp.txt)
+
+## Company
+- [Website](https://apurata.com)
+- [Blog](https://apurata.com/blog/)
+- [Terms and conditions](https://apurata.com/blog/terminos-y-condiciones/)
+- [Privacy notice](https://apurata.com/blog/privacidad/)

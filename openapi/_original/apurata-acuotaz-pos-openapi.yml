@@ -1,0 +1,357 @@
+openapi: 3.0.3
+info:
+  title: Apurata aCuotaz POS REST API
+  version: '1.0'
+  x-apievangelist-generated: '2026-07-18'
+  x-apievangelist-method: generated
+  x-apievangelist-source: https://docs.apurata.com/POS/rest_api/
+  description: >-
+    Merchant-facing REST API for the aCuotaz "buy now, pay later" installment
+    financing product operated by Apurata (Tecno Creditos S.A.C., Peru). Lets an
+    e-commerce merchant fetch financing limits, create and manage installment
+    orders, confirm/cancel orders, issue total or partial refunds, and render the
+    aCuotaz checkout widgets. Transcribed faithfully from the public documentation
+    at docs.apurata.com; not published by Apurata as an OpenAPI file.
+  contact:
+    name: Apurata aCuotaz Integrations
+    url: https://docs.apurata.com/POS/intro/
+  license:
+    name: Proprietary
+servers:
+  - url: https://apurata.com
+    description: Production (test and live behavior are selected by the client_id / secret token issued)
+tags:
+  - name: config
+    description: Financing configuration and limits
+  - name: orders
+    description: Order lifecycle (create, read, confirm, cancel)
+  - name: refunds
+    description: Total and partial refunds
+  - name: widgets
+    description: Embeddable checkout widgets (HTML)
+paths:
+  /pos/client/landing_config:
+    get:
+      tags: [config]
+      operationId: getLandingConfig
+      summary: Get funding limits
+      description: Retrieve the minimum/maximum financeable amounts and installment step counts configured for the authenticated client.
+      responses:
+        '200':
+          description: Funding limits
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  landing_version: { type: string }
+                  min_amount: { type: number, format: float }
+                  max_amount: { type: number, format: float }
+                  min_steps: { type: integer }
+                  max_steps: { type: integer }
+        '401':
+          description: Wrong or missing client token
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+      security:
+        - bearerAuth: []
+  /pos/order/create:
+    post:
+      tags: [orders]
+      operationId: createOrder
+      summary: Create order
+      description: >-
+        Create a new aCuotaz installment order. Idempotent on order_id: submitting
+        an existing order_id returns the existing order with status
+        "already_created" instead of creating a duplicate.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CreateOrderRequest' }
+      responses:
+        '200':
+          description: Order created or already existed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  redirect_to: { type: string, format: uri }
+                  status: { type: string, enum: [new_order, already_created] }
+        '400':
+          description: Validation error or client registration issue
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '401':
+          description: Token validation failed
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+      security:
+        - bearerAuth: []
+  /pos/order/{order_id}:
+    get:
+      tags: [orders]
+      operationId: getOrder
+      summary: Get order information
+      description: Retrieve the current status and details of an order, including a magic continuation link.
+      parameters:
+        - { name: order_id, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: Order details
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Order' }
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '404':
+          description: Order not found
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+      security:
+        - bearerAuth: []
+  /pos/order/{order_id}/total-refund:
+    post:
+      tags: [refunds]
+      operationId: totalRefundOrder
+      summary: Total refund
+      description: Fully refund an order. Requires an X-Unique-Token header to guarantee idempotency of the refund.
+      parameters:
+        - { name: order_id, in: path, required: true, schema: { type: string } }
+        - { name: X-Unique-Token, in: header, required: true, schema: { type: string }, description: Unique idempotency token for the refund }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [author, reason]
+              properties:
+                author: { type: string }
+                reason: { type: string }
+      responses:
+        '200':
+          description: Refund result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  refund_method: { type: string }
+                  tracking_id: { type: string }
+                  status: { type: string, enum: [success, already_refunded] }
+        '400':
+          description: Cancellation or disbursement constraint
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '401':
+          description: Authorization failed
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '404':
+          description: Order not found
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+      security:
+        - bearerAuth: []
+  /pos/order/{order_id}/partial-refund:
+    post:
+      tags: [refunds]
+      operationId: partialRefundOrder
+      summary: Partial refund
+      description: Partially refund an order by amount. Requires an X-Unique-Token header for idempotency.
+      parameters:
+        - { name: order_id, in: path, required: true, schema: { type: string } }
+        - { name: X-Unique-Token, in: header, required: true, schema: { type: string }, description: Unique idempotency token for the refund }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [amount, author, reason]
+              properties:
+                amount: { type: number, format: float }
+                author: { type: string }
+                reason: { type: string }
+      responses:
+        '200':
+          description: Refund result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string, enum: [success, decreased_debt] }
+        '400':
+          description: Amount constraint or disbursement failure
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '401':
+          description: Authorization failed
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '404':
+          description: Order not found
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+      security:
+        - bearerAuth: []
+  /pos/order/{order_id}/cancel:
+    post:
+      tags: [orders]
+      operationId: cancelOrder
+      summary: Cancel order
+      description: Cancel an order that has not yet been confirmed/funded.
+      parameters:
+        - { name: order_id, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: Cancel result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  modified_orders: { type: integer }
+        '400':
+          description: Confirmed order cannot be canceled
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '401':
+          description: Authorization failed
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '404':
+          description: Order not found
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+      security:
+        - bearerAuth: []
+  /pos/order/{order_id}/confirm:
+    post:
+      tags: [orders]
+      operationId: confirmOrder
+      summary: Confirm order
+      description: Confirm an approved and funded order so the merchant fulfills the purchase.
+      parameters:
+        - { name: order_id, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: Confirm result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  modified_orders: { type: integer }
+        '400':
+          description: Order not in an approvable/funded state
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '401':
+          description: Authorization failed
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '404':
+          description: Order not found
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+      security:
+        - bearerAuth: []
+  /pos/pay-with-apurata-add-on/{amount}:
+    get:
+      tags: [widgets]
+      operationId: getAddOnWidget
+      summary: Get aCuotaz add-on widget
+      description: Retrieve a styled HTML/CSS widget that shows installment financing options for a given purchase amount. Authenticated with the Client_id header.
+      parameters:
+        - { name: amount, in: path, required: true, schema: { type: number, format: float } }
+        - { name: Client_id, in: header, required: true, schema: { type: string }, description: Your aCuotaz client id }
+      responses:
+        '200':
+          description: HTML widget
+          content:
+            text/html:
+              schema: { type: string }
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+  /pos/{client_id}/info-steps:
+    get:
+      tags: [widgets]
+      operationId: getInfoSteps
+      summary: Get aCuotaz info-steps widget
+      description: Retrieve a styled HTML widget describing the aCuotaz steps, requirements, and payment options for a checkout page.
+      parameters:
+        - { name: client_id, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: HTML widget
+          content:
+            text/html:
+              schema: { type: string }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Secret token issued by Apurata, sent as Authorization: Bearer <secret_token>. HTTPS is mandatory.'
+  schemas:
+    CreateOrderRequest:
+      type: object
+      required: [amount, order_id, pos_client_id, url_redir_on_canceled, url_redir_on_rejected, url_redir_on_success, url_redir_on_downpayment]
+      properties:
+        amount: { type: number, format: float }
+        order_id: { type: string, description: Merchant-unique order id (idempotency key) }
+        pos_client_id: { type: string }
+        url_redir_on_canceled: { type: string, format: uri }
+        url_redir_on_rejected: { type: string, format: uri }
+        url_redir_on_success: { type: string, format: uri }
+        url_redir_on_downpayment: { type: string, format: uri }
+        acuotaz_send_sms: { type: boolean }
+        expiration_ts: { type: string, description: 'UTC-0 timestamp YYYY-MM-DD hh:mm:ss.mmm' }
+        description: { type: string }
+        url_redir_on_order_detail: { type: string, format: uri }
+        customer_6m_payment: { type: number, format: float }
+        customer_data: { type: object }
+        financed_products: { type: array, items: { type: object } }
+    Order:
+      type: object
+      properties:
+        order_id: { type: string }
+        amount: { type: number, format: float }
+        status: { $ref: '#/components/schemas/OrderStatus' }
+        magic_link: { type: string, format: uri }
+        pos_client_id: { type: string }
+        customer_data: { type: object }
+    OrderStatus:
+      type: string
+      enum: [initial, created, approved, onhold, validated, funded, rejected, canceled]
+    Error:
+      type: object
+      properties:
+        error: { type: string }
+        message: { type: string }

@@ -1,0 +1,61 @@
+asyncapi: 3.0.0
+info:
+  title: Apurata aCuotaz Order Webhooks
+  version: '1.0'
+  description: >-
+    Outbound webhook events Apurata delivers to a merchant-registered URL as an
+    aCuotaz installment order moves through its lifecycle. Generated from the
+    public webhook documentation at docs.apurata.com/POS/webhooks/.
+  x-apievangelist-generated: '2026-07-18'
+  x-apievangelist-method: generated
+  x-apievangelist-source: https://docs.apurata.com/POS/webhooks/
+defaultContentType: application/json
+servers:
+  merchant:
+    host: merchant-registered-endpoint
+    protocol: https
+    description: Merchant-provided HTTPS URL communicated to the aCuotaz team.
+channels:
+  orderEvents:
+    address: /
+    description: Merchant webhook endpoint that receives aCuotaz order status events.
+    messages:
+      OrderStatusEvent:
+        $ref: '#/components/messages/OrderStatusEvent'
+operations:
+  receiveOrderStatusEvent:
+    action: receive
+    channel:
+      $ref: '#/channels/orderEvents'
+    summary: Receive an aCuotaz order status change.
+    bindings:
+      http:
+        method: POST
+    messages:
+      - $ref: '#/channels/orderEvents/messages/OrderStatusEvent'
+components:
+  messages:
+    OrderStatusEvent:
+      name: OrderStatusEvent
+      title: Order status event
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          Apurata-Auth:
+            type: string
+            description: 'Bearer <secret_token> credential for optional validation.'
+      payload:
+        $ref: '#/components/schemas/OrderStatusEvent'
+  schemas:
+    OrderStatusEvent:
+      type: object
+      required: [order_id, event]
+      properties:
+        order_id:
+          type: string
+          description: Identifies the order.
+        event:
+          type: string
+          description: The new order status.
+          enum: [created, approved, onhold, validated, funded, canceled]

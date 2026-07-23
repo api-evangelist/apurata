@@ -1,0 +1,32 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/apurata-acuotaz-pos-openapi.yml
+standards:
+- id: oauth2
+  conforms: false
+  evidence: Auth is an HTTP Bearer secret token, not OAuth2.
+- id: oidc
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors are plain JSON (error/message), not application/problem+json.
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: Valid /.well-known/security.txt published (well-known/apurata-security.txt).
+- id: idempotency
+  conforms: true
+  evidence: order_id natural-key idempotency on create; X-Unique-Token on refunds.
+- id: webhooks
+  conforms: true
+  evidence: Documented outbound webhook events with bearer auth and exponential-backoff retries.
+- id: json-api
+  conforms: false
+- id: fapi
+  conforms: false
+- id: pci-dss
+  conforms: unknown
+  evidence: Card data handled via Adyen per public tech profile; no published attestation.
+regulatory:
+- authority: SBS (Superintendencia de Banca, Seguros y AFP, Peru)
+  status: authorized
+  evidence: apurata.com states authorization by Peru's banking regulator (SBS) under Tecno Creditos S.A.C.

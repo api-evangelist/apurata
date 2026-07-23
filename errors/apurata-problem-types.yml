@@ -1,0 +1,43 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/apurata-acuotaz-pos-openapi.yml
+format: json
+note: >-
+  Derived from the documented 4xx responses of the aCuotaz POS REST API. Apurata
+  returns plain JSON error objects (error/message), not RFC 9457
+  application/problem+json.
+envelope:
+  fields: [error, message]
+problems:
+- status: 401
+  title: Wrong or missing client token
+  remediation: Send a valid Authorization Bearer secret token (or Client_id header on widget endpoints).
+  source_operations:
+  - openapi/apurata-acuotaz-pos-openapi.yml#getLandingConfig
+  - openapi/apurata-acuotaz-pos-openapi.yml#createOrder
+  - openapi/apurata-acuotaz-pos-openapi.yml#getOrder
+  - openapi/apurata-acuotaz-pos-openapi.yml#getAddOnWidget
+- status: 400
+  title: Validation error
+  remediation: Fix the request payload; check required fields and client registration status.
+  source_operations:
+  - openapi/apurata-acuotaz-pos-openapi.yml#createOrder
+- status: 400
+  title: Order state constraint
+  remediation: >-
+    The order is not in a state that allows this action (e.g. a confirmed order
+    cannot be canceled; a refund is blocked by cancellation/disbursement state).
+  source_operations:
+  - openapi/apurata-acuotaz-pos-openapi.yml#cancelOrder
+  - openapi/apurata-acuotaz-pos-openapi.yml#confirmOrder
+  - openapi/apurata-acuotaz-pos-openapi.yml#totalRefundOrder
+  - openapi/apurata-acuotaz-pos-openapi.yml#partialRefundOrder
+- status: 404
+  title: Order not found
+  remediation: Verify the order_id exists for this client.
+  source_operations:
+  - openapi/apurata-acuotaz-pos-openapi.yml#getOrder
+  - openapi/apurata-acuotaz-pos-openapi.yml#totalRefundOrder
+  - openapi/apurata-acuotaz-pos-openapi.yml#partialRefundOrder
+  - openapi/apurata-acuotaz-pos-openapi.yml#cancelOrder
+  - openapi/apurata-acuotaz-pos-openapi.yml#confirmOrder

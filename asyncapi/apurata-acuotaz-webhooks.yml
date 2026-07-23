@@ -1,0 +1,38 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.apurata.com/POS/webhooks/
+type: Webhooks
+transport: outbound HTTP POST (JSON) to a merchant-registered URL
+registration: Merchant communicates the webhook URL to the aCuotaz team (no self-service registration).
+auth:
+  header: Apurata-Auth
+  scheme: Bearer
+  value: Bearer <secret_token>
+  validation: optional but recommended
+payload:
+  fields:
+    order_id: string, identifies the order
+    event: string, one of the order statuses below
+  example:
+    order_id: '123'
+    event: approved
+retries:
+  attempts: 5
+  backoff: exponential
+  intervals_seconds: [1, 2, 4, 8, 16]
+log_retention_days: 7
+events:
+- name: created
+  description: Customer selected installments and initiated the credit request.
+- name: approved
+  description: Credit evaluation succeeded.
+- name: onhold
+  description: Initial payment succeeded and identity photos uploaded (when no down payment required).
+- name: validated
+  description: Identity validation completed successfully.
+- name: funded
+  description: Disbursement completed.
+- name: canceled
+  description: Credit request canceled.
+not_delivered:
+- initial

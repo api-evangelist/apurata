@@ -1,0 +1,47 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.apurata.com/POS/rest_api/
+authentication:
+  style: HTTP Bearer secret token over mandatory HTTPS
+  widget_auth: Client_id header
+  see: authentication/apurata-authentication.yml
+idempotency:
+  supported: true
+  order_creation:
+    mechanism: natural-key
+    key: order_id
+    behavior: >-
+      createOrder is idempotent on the merchant-supplied order_id; re-submitting an
+      existing order_id returns the existing order with status "already_created"
+      rather than creating a duplicate.
+  refunds:
+    mechanism: header
+    header: X-Unique-Token
+    scope: per refund request
+    behavior: >-
+      Total and partial refunds require a caller-generated X-Unique-Token header;
+      repeated tokens are de-duplicated (status "already_refunded" / "decreased_debt").
+pagination:
+  supported: false
+  note: No list/collection endpoints are documented; orders are addressed by order_id.
+versioning:
+  scheme: product-versioned docs
+  note: >-
+    The REST API is unversioned in the path. Product variants carry versions in the
+    documentation (Downpayment In-House v1-v4; a Samsung Finance+ OpenAPI v1).
+timestamps:
+  timezone: UTC-0 in payloads; Peru local time (PET) is UTC-5, subtract 5 hours.
+  format: 'YYYY-MM-DD hh:mm:ss.mmm'
+error_envelope:
+  shape: JSON object with an error/message description
+  see: errors/apurata-problem-types.yml
+  format: not RFC 9457 (plain JSON, no application/problem+json)
+webhooks:
+  supported: true
+  transport: outbound POST JSON
+  auth: 'Apurata-Auth: Bearer <secret_token>'
+  retries: up to 5 attempts with exponential backoff (1, 2, 4, 8, 16 seconds)
+  log_retention: 7 days
+  see: asyncapi/apurata-acuotaz-webhooks.yml
+rate_limits:
+  documented: false

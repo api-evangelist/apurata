@@ -1,0 +1,33 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: openapi/apurata-acuotaz-pos-openapi.yml
+note: >-
+  Apurata publishes no official hosted MCP server for the aCuotaz API. (The
+  apurata/metabase-ai-assistant repo is an unrelated Metabase MCP server.) This is
+  a candidate tool list derived one-to-one from the documented REST operations.
+server:
+  name: apurata-acuotaz
+  transport: http
+tools:
+- name: get_landing_config
+  description: Get aCuotaz funding limits (min/max amount and installment steps).
+  source_operation: openapi/apurata-acuotaz-pos-openapi.yml#getLandingConfig
+- name: create_order
+  description: Create an aCuotaz installment order (idempotent on order_id).
+  source_operation: openapi/apurata-acuotaz-pos-openapi.yml#createOrder
+- name: get_order
+  description: Retrieve an order's status and details.
+  source_operation: openapi/apurata-acuotaz-pos-openapi.yml#getOrder
+- name: total_refund_order
+  description: Fully refund an order (requires X-Unique-Token).
+  source_operation: openapi/apurata-acuotaz-pos-openapi.yml#totalRefundOrder
+- name: partial_refund_order
+  description: Partially refund an order by amount (requires X-Unique-Token).
+  source_operation: openapi/apurata-acuotaz-pos-openapi.yml#partialRefundOrder
+- name: cancel_order
+  description: Cancel an unconfirmed order.
+  source_operation: openapi/apurata-acuotaz-pos-openapi.yml#cancelOrder
+- name: confirm_order
+  description: Confirm an approved and funded order.
+  source_operation: openapi/apurata-acuotaz-pos-openapi.yml#confirmOrder

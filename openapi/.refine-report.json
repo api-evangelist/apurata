@@ -1,0 +1,20 @@
+{
+  "provider": "apurata",
+  "sources": [
+    "apurata-config-api-openapi.yml",
+    "apurata-orders-api-openapi.yml",
+    "apurata-refunds-api-openapi.yml",
+    "apurata-widgets-api-openapi.yml"
+  ],
+  "outputs": [
+    "apurata-config-api-openapi.yml",
+    "apurata-orders-api-openapi.yml",
+    "apurata-refunds-api-openapi.yml",
+    "apurata-widgets-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

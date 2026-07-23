@@ -1,0 +1,33 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.apurata.com/POS/testing/
+summary: >-
+  Apurata issues a separate test client_id and secret_token for development.
+  Test and live behavior are selected by which credentials you use; there is no
+  separate sandbox host. Objects created with test credentials are purged daily
+  at 05:00 PET. Values below are published verbatim in the testing docs.
+test_credentials:
+  note: A test client_id and secret_token are provisioned by Apurata on request.
+  data_lifecycle: All objects created with test credentials are removed the next day at 05:00 a.m. PET.
+test_cards:
+- number: '4009 1753 3280 6176'
+  exp: '11/25'
+  cvv: '123'
+  note: Name and address may be arbitrary. Card payment testing.
+test_bank_transfer:
+  note: Simulated bank-transfer payments accept any image, bank name, operation number, and payment date. Only works in test e-commerces.
+  operation_number: '1234567'
+magic_dni_values:
+  description: Peruvian national ID (DNI) values that force a fixed credit-evaluation outcome (digits of pi, e, and phi).
+  values:
+  - dni: '14159265'
+    outcome: always_approved
+  - dni: '71828182'
+    outcome: always_rejected
+  - dni: '61803398'
+    outcome: cannot_be_evaluated
+validation_tokens:
+  phone_token: ABCDEF
+  email_token: '1234'
+funding_code_testing:
+  note: Contact support for a dashboard to test funding-code functionality and observe the full order flow.

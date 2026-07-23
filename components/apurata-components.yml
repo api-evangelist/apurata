@@ -1,0 +1,30 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.apurata.com/POS/rest_api/
+note: >-
+  Client-side / embeddable surfaces the merchant renders in a storefront checkout.
+  Distinct from the server-side integration plugins in packages/.
+families:
+- family: Checkout widgets
+  description: Server-rendered HTML/CSS widgets fetched from the aCuotaz API and embedded in the checkout page.
+  components:
+  - name: Pay-with-Apurata add-on
+    kind: html-widget
+    source_operation: openapi/apurata-acuotaz-pos-openapi.yml#getAddOnWidget
+    endpoint: GET /pos/pay-with-apurata-add-on/{amount}
+    auth: Client_id header
+    description: Shows the installment financing options and price breakdown for a purchase amount.
+  - name: Info-steps widget
+    kind: html-widget
+    source_operation: openapi/apurata-acuotaz-pos-openapi.yml#getInfoSteps
+    endpoint: GET /pos/{client_id}/info-steps
+    description: Informational checkout panel describing aCuotaz steps, requirements, and payment options.
+- family: Storefront widget frameworks
+  description: Prebuilt front-end widget bundles maintained per platform in the apurata GitHub org.
+  components:
+  - name: Shopify aCuotaz widgets
+    kind: liquid-framework
+    url: https://github.com/apurata/shopify-framework-acuotaz-widgets
+  - name: VTEX aCuotaz widgets
+    kind: typescript-framework
+    url: https://github.com/apurata/vtex-framework-acuotaz-widgets

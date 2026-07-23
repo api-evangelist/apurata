@@ -1,0 +1,12 @@
+Contact: mailto:security@apurata.com
+Preferred-Languages: es, en
+Canonical: https://apurata.com/.well-known/security.txt
+Policy: https://apurata.com/.well-known/vdp.txt
+Hiring: mailto:security@apurata.com
+Expires: 2026-08-27T00:00:00Z
+Acknowledgments: https://apurata.com/security/hall-of-fame
+
+# Scope
+- In scope (priority): core production web properties
+- In scope (lower priority): Android app 'Apurata Mejores Prestamos'
+- Please follow our VDP for safe harbor, testing limitations, and SLAs

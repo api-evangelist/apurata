@@ -1,0 +1,12 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/apurata-acuotaz-pos-openapi.yml
+skills:
+- file: apurata-create-and-confirm-order.md
+  name: Create and confirm an aCuotaz installment order
+  api: openapi/apurata-acuotaz-pos-openapi.yml
+  operations: [getLandingConfig, createOrder, getOrder, confirmOrder]
+- file: apurata-refund-order.md
+  name: Refund an aCuotaz order
+  api: openapi/apurata-acuotaz-pos-openapi.yml
+  operations: [getOrder, totalRefundOrder, partialRefundOrder]

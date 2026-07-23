@@ -1,0 +1,26 @@
+generated: '2026-07-18'
+method: searched
+host: https://apurata.com
+documents:
+- path: /.well-known/security.txt
+  status: 200
+  file: apurata-security.txt
+  standard: RFC 9116
+- path: /.well-known/vdp.txt
+  status: 200
+  file: apurata-vdp.txt
+  note: Vulnerability Disclosure Policy referenced by security.txt Policy field
+- path: /.well-known/openid-configuration
+  status: 200
+  spa_fallback: true
+  note: Returns the site's HTML single-page-app shell (text/html), not a real OIDC discovery document.
+- path: /.well-known/oauth-authorization-server
+  status: 404
+- path: /.well-known/api-catalog
+  status: 200
+  spa_fallback: true
+  note: Returns the SPA HTML shell, not a real RFC 9727 api-catalog.
+- path: /.well-known/ai-plugin.json
+  status: 200
+  spa_fallback: true
+  note: Returns the SPA HTML shell, not a real ai-plugin manifest.
