@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apurata aCuotaz POS REST config refunds API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "refunds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Total refund",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apurata.com/pos/order/:order_id/total-refund",
+            "headers": [
+              {
+                "name": "X-Unique-Token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Fully refund an order. Requires an X-Unique-Token header to guarantee idempotency of the refund."
+        },
+        {
+          "info": {
+            "name": "Partial refund",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apurata.com/pos/order/:order_id/partial-refund",
+            "headers": [
+              {
+                "name": "X-Unique-Token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Partially refund an order by amount. Requires an X-Unique-Token header for idempotency."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apurata aCuotaz POS REST config widgets API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "widgets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get aCuotaz add-on widget",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apurata.com/pos/pay-with-apurata-add-on/:amount",
+            "headers": [
+              {
+                "name": "Client_id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "amount",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a styled HTML/CSS widget that shows installment financing options for a given purchase amount. Authenticated with the Client_id header."
+        },
+        {
+          "info": {
+            "name": "Get aCuotaz info-steps widget",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apurata.com/pos/:client_id/info-steps",
+            "params": [
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a styled HTML widget describing the aCuotaz steps, requirements, and payment options for a checkout page."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

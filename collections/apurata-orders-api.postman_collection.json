@@ -1,0 +1,1001 @@
+{
+  "item": [
+    {
+      "id": "70790f6d-c64e-4aa1-a2a5-8d9e7b4639a8",
+      "name": "orders",
+      "description": {
+        "content": "Order lifecycle (create, read, confirm, cancel)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f55f3fa1-f8ee-4954-8d74-57b61873d77a",
+          "name": "Create order",
+          "request": {
+            "name": "Create order",
+            "description": {
+              "content": "Create a new aCuotaz installment order. Idempotent on order_id: submitting an existing order_id returns the existing order with status \"already_created\" instead of creating a duplicate.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pos",
+                "order",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<float>\",\n  \"order_id\": \"<string>\",\n  \"pos_client_id\": \"<string>\",\n  \"url_redir_on_canceled\": \"<uri>\",\n  \"url_redir_on_rejected\": \"<uri>\",\n  \"url_redir_on_success\": \"<uri>\",\n  \"url_redir_on_downpayment\": \"<uri>\",\n  \"acuotaz_send_sms\": \"<boolean>\",\n  \"expiration_ts\": \"<string>\",\n  \"description\": \"<string>\",\n  \"url_redir_on_order_detail\": \"<uri>\",\n  \"customer_6m_payment\": \"<float>\",\n  \"customer_data\": \"<object>\",\n  \"financed_products\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cf41577a-29c9-4eac-b874-d91d747bc82e",
+              "name": "Order created or already existed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pos",
+                    "order",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<float>\",\n  \"order_id\": \"<string>\",\n  \"pos_client_id\": \"<string>\",\n  \"url_redir_on_canceled\": \"<uri>\",\n  \"url_redir_on_rejected\": \"<uri>\",\n  \"url_redir_on_success\": \"<uri>\",\n  \"url_redir_on_downpayment\": \"<uri>\",\n  \"acuotaz_send_sms\": \"<boolean>\",\n  \"expiration_ts\": \"<string>\",\n  \"description\": \"<string>\",\n  \"url_redir_on_order_detail\": \"<uri>\",\n  \"customer_6m_payment\": \"<float>\",\n  \"customer_data\": \"<object>\",\n  \"financed_products\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"redirect_to\": \"https://X.hbmoUNDrnF\",\n  \"status\": \"new_order\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c099c5e-6876-420d-847d-aea9a43052c8",
+              "name": "Validation error or client registration issue",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pos",
+                    "order",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<float>\",\n  \"order_id\": \"<string>\",\n  \"pos_client_id\": \"<string>\",\n  \"url_redir_on_canceled\": \"<uri>\",\n  \"url_redir_on_rejected\": \"<uri>\",\n  \"url_redir_on_success\": \"<uri>\",\n  \"url_redir_on_downpayment\": \"<uri>\",\n  \"acuotaz_send_sms\": \"<boolean>\",\n  \"expiration_ts\": \"<string>\",\n  \"description\": \"<string>\",\n  \"url_redir_on_order_detail\": \"<uri>\",\n  \"customer_6m_payment\": \"<float>\",\n  \"customer_data\": \"<object>\",\n  \"financed_products\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30384dc6-4baf-4212-81d9-062ee1c68ae8",
+              "name": "Token validation failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pos",
+                    "order",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<float>\",\n  \"order_id\": \"<string>\",\n  \"pos_client_id\": \"<string>\",\n  \"url_redir_on_canceled\": \"<uri>\",\n  \"url_redir_on_rejected\": \"<uri>\",\n  \"url_redir_on_success\": \"<uri>\",\n  \"url_redir_on_downpayment\": \"<uri>\",\n  \"acuotaz_send_sms\": \"<boolean>\",\n  \"expiration_ts\": \"<string>\",\n  \"description\": \"<string>\",\n  \"url_redir_on_order_detail\": \"<uri>\",\n  \"customer_6m_payment\": \"<float>\",\n  \"customer_data\": \"<object>\",\n  \"financed_products\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f65ec54-a41a-433b-b126-54607a3ed70c",
+          "name": "Get order information",
+          "request": {
+            "name": "Get order information",
+            "description": {
+              "content": "Retrieve the current status and details of an order, including a magic continuation link.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pos",
+                "order",
+                ":order_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "80b83d4a-aab9-469c-9564-e7c95f3a2c86",
+              "name": "Order details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pos",
+                    "order",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"order_id\": \"string\",\n  \"amount\": 7403.9820101270725,\n  \"status\": \"rejected\",\n  \"magic_link\": \"https://nXXchtugeZAnHNptrZfDgX.diolF61I6PZLVoJwN.C7IuNm6.nFH.9244eBDDC.dhe,G\",\n  \"pos_client_id\": \"string\",\n  \"customer_data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a51973b-1dc6-4a6a-b6a7-e17209550050",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pos",
+                    "order",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0b8beb9-df25-449a-94d3-3e652b17c664",
+              "name": "Order not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pos",
+                    "order",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd416f96-c157-4feb-bf95-914b3003f0b8",
+          "name": "Cancel order",
+          "request": {
+            "name": "Cancel order",
+            "description": {
+              "content": "Cancel an order that has not yet been confirmed/funded.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pos",
+                "order",
+                ":order_id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "722e6ccf-5781-4bed-bf32-120319315bb7",
+              "name": "Cancel result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pos",
+                    "order",
+                    ":order_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"modified_orders\": 9139\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7962af80-abc3-4632-8106-f10e16b9e698",
+              "name": "Confirmed order cannot be canceled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pos",
+                    "order",
+                    ":order_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25fe67e1-3bf1-4e76-b53e-2c73bf4dd1e1",
+              "name": "Authorization failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pos",
+                    "order",
+                    ":order_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d690440e-55c6-4ff1-bffd-680c5226a360",
+              "name": "Order not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pos",
+                    "order",
+                    ":order_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8bf04c9a-28bc-487c-93c4-91173e5de0fd",
+          "name": "Confirm order",
+          "request": {
+            "name": "Confirm order",
+            "description": {
+              "content": "Confirm an approved and funded order so the merchant fulfills the purchase.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pos",
+                "order",
+                ":order_id",
+                "confirm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "17d469b9-dd23-4321-9472-e87b7b050970",
+              "name": "Confirm result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pos",
+                    "order",
+                    ":order_id",
+                    "confirm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"modified_orders\": 9139\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12b72270-18e5-4168-a05d-7562f67d26e2",
+              "name": "Order not in an approvable/funded state",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pos",
+                    "order",
+                    ":order_id",
+                    "confirm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95a76cb8-9977-4605-a2a5-a71d50811a5a",
+              "name": "Authorization failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pos",
+                    "order",
+                    ":order_id",
+                    "confirm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "854e26a7-198f-4eb0-a128-6fd24f9b6f69",
+              "name": "Order not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pos",
+                    "order",
+                    ":order_id",
+                    "confirm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apurata.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3a6ccfcd-2689-421e-9056-7666061a91d3",
+    "name": "Apurata aCuotaz POS REST config orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Merchant-facing REST API for the aCuotaz \"buy now, pay later\" installment financing product operated by Apurata (Tecno Creditos S.A.C., Peru). Lets an e-commerce merchant fetch financing limits, create and manage installment orders, confirm/cancel orders, issue total or partial refunds, and render the aCuotaz checkout widgets. Transcribed faithfully from the public documentation at docs.apurata.com; not published by Apurata as an OpenAPI file.\n\nContact Support:\n Name: Apurata aCuotaz Integrations",
+      "type": "text/plain"
+    }
+  }
+}

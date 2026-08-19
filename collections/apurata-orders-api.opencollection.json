@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apurata aCuotaz POS REST config orders API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apurata.com/pos/order/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new aCuotaz installment order. Idempotent on order_id: submitting an existing order_id returns the existing order with status \"already_created\" instead of creating a duplicate."
+        },
+        {
+          "info": {
+            "name": "Get order information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apurata.com/pos/order/:order_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the current status and details of an order, including a magic continuation link."
+        },
+        {
+          "info": {
+            "name": "Cancel order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apurata.com/pos/order/:order_id/cancel",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Cancel an order that has not yet been confirmed/funded."
+        },
+        {
+          "info": {
+            "name": "Confirm order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apurata.com/pos/order/:order_id/confirm",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Confirm an approved and funded order so the merchant fulfills the purchase."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

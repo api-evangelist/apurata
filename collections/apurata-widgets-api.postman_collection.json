@@ -1,0 +1,275 @@
+{
+  "item": [
+    {
+      "id": "bb748338-fb65-4f2a-bbc5-36e941cba6f1",
+      "name": "widgets",
+      "description": {
+        "content": "Embeddable checkout widgets (HTML)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8ab51549-7606-4f9e-988b-83059c00c5fe",
+          "name": "Get aCuotaz add-on widget",
+          "request": {
+            "name": "Get aCuotaz add-on widget",
+            "description": {
+              "content": "Retrieve a styled HTML/CSS widget that shows installment financing options for a given purchase amount. Authenticated with the Client_id header.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pos",
+                "pay-with-apurata-add-on",
+                ":amount"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<float>",
+                  "key": "amount",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your aCuotaz client id",
+                "key": "Client_id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "05192dbd-ab52-4c90-9e01-2db66408c086",
+              "name": "HTML widget",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pos",
+                    "pay-with-apurata-add-on",
+                    ":amount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<float>",
+                      "key": "amount",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your aCuotaz client id",
+                    "key": "Client_id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6f6b28b5-7b3c-4526-9dbc-7235e8ea6e2c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pos",
+                    "pay-with-apurata-add-on",
+                    ":amount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<float>",
+                      "key": "amount",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your aCuotaz client id",
+                    "key": "Client_id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd16f60c-1eb5-4af6-a09c-b13b67c13282",
+          "name": "Get aCuotaz info-steps widget",
+          "request": {
+            "name": "Get aCuotaz info-steps widget",
+            "description": {
+              "content": "Retrieve a styled HTML widget describing the aCuotaz steps, requirements, and payment options for a checkout page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pos",
+                ":client_id",
+                "info-steps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "client_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fdf1908b-d0e8-469f-a47e-c97b199da13a",
+              "name": "HTML widget",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pos",
+                    ":client_id",
+                    "info-steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "client_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apurata.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1f5cfaa6-59b1-4225-b45b-bce46b4ec9a2",
+    "name": "Apurata aCuotaz POS REST config widgets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Merchant-facing REST API for the aCuotaz \"buy now, pay later\" installment financing product operated by Apurata (Tecno Creditos S.A.C., Peru). Lets an e-commerce merchant fetch financing limits, create and manage installment orders, confirm/cancel orders, issue total or partial refunds, and render the aCuotaz checkout widgets. Transcribed faithfully from the public documentation at docs.apurata.com; not published by Apurata as an OpenAPI file.\n\nContact Support:\n Name: Apurata aCuotaz Integrations",
+      "type": "text/plain"
+    }
+  }
+}

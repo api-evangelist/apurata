@@ -1,0 +1,167 @@
+{
+  "item": [
+    {
+      "id": "7479ce8b-696a-4275-affd-89c9d4d6737c",
+      "name": "config",
+      "description": {
+        "content": "Financing configuration and limits",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "59a1a216-7d18-4826-a15e-99740180552a",
+          "name": "Get funding limits",
+          "request": {
+            "name": "Get funding limits",
+            "description": {
+              "content": "Retrieve the minimum/maximum financeable amounts and installment step counts configured for the authenticated client.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pos",
+                "client",
+                "landing_config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "825a5b5d-8fe0-464c-998f-dbad49575872",
+              "name": "Funding limits",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pos",
+                    "client",
+                    "landing_config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"landing_version\": \"string\",\n  \"min_amount\": 5233.056210187349,\n  \"max_amount\": 4021.7572958492374,\n  \"min_steps\": 696,\n  \"max_steps\": 8889\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "757e392b-bc7a-4a2f-8a5d-e8123f7233c3",
+              "name": "Wrong or missing client token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pos",
+                    "client",
+                    "landing_config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apurata.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "81f281a2-f6b7-423e-bada-0279423bfb32",
+    "name": "Apurata aCuotaz POS REST config API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Merchant-facing REST API for the aCuotaz \"buy now, pay later\" installment financing product operated by Apurata (Tecno Creditos S.A.C., Peru). Lets an e-commerce merchant fetch financing limits, create and manage installment orders, confirm/cancel orders, issue total or partial refunds, and render the aCuotaz checkout widgets. Transcribed faithfully from the public documentation at docs.apurata.com; not published by Apurata as an OpenAPI file.\n\nContact Support:\n Name: Apurata aCuotaz Integrations",
+      "type": "text/plain"
+    }
+  }
+}

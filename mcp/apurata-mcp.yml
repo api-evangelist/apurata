@@ -2,10 +2,9 @@ generated: '2026-07-18'
 method: derived
 status: candidate
 source: openapi/apurata-acuotaz-pos-openapi.yml
-note: >-
-  Apurata publishes no official hosted MCP server for the aCuotaz API. (The
-  apurata/metabase-ai-assistant repo is an unrelated Metabase MCP server.) This is
-  a candidate tool list derived one-to-one from the documented REST operations.
+note: Apurata publishes no official hosted MCP server for the aCuotaz API. (The apurata/metabase-ai-assistant
+  repo is an unrelated Metabase MCP server.) This is a candidate tool list derived one-to-one from the
+  documented REST operations.
 server:
   name: apurata-acuotaz
   transport: http
@@ -31,3 +30,9 @@ tools:
 - name: confirm_order
   description: Confirm an approved and funded order.
   source_operation: openapi/apurata-acuotaz-pos-openapi.yml#confirmOrder
+deployment:
+  mode: none
+  verified: derived
+  tools: 7
+  checked: '2026-08-12'
+  source: catalog MCP census

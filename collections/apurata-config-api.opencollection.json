@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apurata aCuotaz POS REST config API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "config",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get funding limits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apurata.com/pos/client/landing_config",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the minimum/maximum financeable amounts and installment step counts configured for the authenticated client."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
