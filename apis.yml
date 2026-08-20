@@ -35,6 +35,18 @@ modified: '2026-07-18'
 image: https://apurata.com/app/logo512.png
 tags:
 - Company
+- Financial-Services
+- Fintech
+- Lending
+- Buy Now Pay Later
+- Installment Payments
+- Consumer Credit
+- Payments
+- E-Commerce
+- Peru
+- Latin America
+tags_raw:
+- Company
 - Financial Services
 - Fintech
 - Lending
@@ -52,6 +64,8 @@ apis:
   humanURL: https://docs.apurata.com/POS/rest_api/
   baseURL: https://apurata.com
   tags:
+  - Config
+  tags_raw:
   - config
   properties:
   - type: OpenAPI
@@ -70,6 +84,8 @@ apis:
   humanURL: https://docs.apurata.com/POS/rest_api/
   baseURL: https://apurata.com
   tags:
+  - Order
+  tags_raw:
   - orders
   properties:
   - type: OpenAPI
@@ -88,6 +104,8 @@ apis:
   humanURL: https://docs.apurata.com/POS/rest_api/
   baseURL: https://apurata.com
   tags:
+  - Refunds
+  tags_raw:
   - refunds
   properties:
   - type: OpenAPI
@@ -106,6 +124,8 @@ apis:
   humanURL: https://docs.apurata.com/POS/rest_api/
   baseURL: https://apurata.com
   tags:
+  - Widgets
+  tags_raw:
   - widgets
   properties:
   - type: OpenAPI
