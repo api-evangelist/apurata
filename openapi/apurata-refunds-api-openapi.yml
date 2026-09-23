@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Apurata aCuotaz POS REST config refunds API
+  title: Apurata aCuotaz POS REST Refunds API
   version: '1.0'
   x-apievangelist-generated: '2026-07-18'
   x-apievangelist-method: generated
@@ -15,13 +15,13 @@ servers:
 - url: https://apurata.com
   description: Production (test and live behavior are selected by the client_id / secret token issued)
 tags:
-- name: refunds
+- name: Refunds
   description: Total and partial refunds
 paths:
   /pos/order/{order_id}/total-refund:
     post:
       tags:
-      - refunds
+      - Refunds
       operationId: totalRefundOrder
       summary: Total refund
       description: Fully refund an order. Requires an X-Unique-Token header to guarantee idempotency of the refund.
@@ -91,7 +91,7 @@ paths:
   /pos/order/{order_id}/partial-refund:
     post:
       tags:
-      - refunds
+      - Refunds
       operationId: partialRefundOrder
       summary: Partial refund
       description: Partially refund an order by amount. Requires an X-Unique-Token header for idempotency.

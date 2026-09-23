@@ -1,10 +1,7 @@
 {
   "provider": "apurata",
   "sources": [
-    "apurata-config-api-openapi.yml",
-    "apurata-orders-api-openapi.yml",
-    "apurata-refunds-api-openapi.yml",
-    "apurata-widgets-api-openapi.yml"
+    "_original/apurata-acuotaz-pos-openapi.yml"
   ],
   "outputs": [
     "apurata-config-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "apurata-acuotaz-pos-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "apurata-config-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apurata-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apurata-refunds-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apurata-widgets-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

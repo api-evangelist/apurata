@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Apurata aCuotaz POS REST config orders API
+  title: Apurata aCuotaz POS REST Orders API
   version: '1.0'
   x-apievangelist-generated: '2026-07-18'
   x-apievangelist-method: generated
@@ -15,13 +15,13 @@ servers:
 - url: https://apurata.com
   description: Production (test and live behavior are selected by the client_id / secret token issued)
 tags:
-- name: orders
+- name: Orders
   description: Order lifecycle (create, read, confirm, cancel)
 paths:
   /pos/order/create:
     post:
       tags:
-      - orders
+      - Orders
       operationId: createOrder
       summary: Create order
       description: 'Create a new aCuotaz installment order. Idempotent on order_id: submitting an existing order_id returns the existing order with status "already_created" instead of creating a duplicate.'
@@ -64,7 +64,7 @@ paths:
   /pos/order/{order_id}:
     get:
       tags:
-      - orders
+      - Orders
       operationId: getOrder
       summary: Get order information
       description: Retrieve the current status and details of an order, including a magic continuation link.
@@ -98,7 +98,7 @@ paths:
   /pos/order/{order_id}/cancel:
     post:
       tags:
-      - orders
+      - Orders
       operationId: cancelOrder
       summary: Cancel order
       description: Cancel an order that has not yet been confirmed/funded.
@@ -141,7 +141,7 @@ paths:
   /pos/order/{order_id}/confirm:
     post:
       tags:
-      - orders
+      - Orders
       operationId: confirmOrder
       summary: Confirm order
       description: Confirm an approved and funded order so the merchant fulfills the purchase.
@@ -183,17 +183,6 @@ paths:
       - bearerAuth: []
 components:
   schemas:
-    OrderStatus:
-      type: string
-      enum:
-      - initial
-      - created
-      - approved
-      - onhold
-      - validated
-      - funded
-      - rejected
-      - canceled
     Order:
       type: object
       properties:
@@ -211,13 +200,6 @@ components:
           type: string
         customer_data:
           type: object
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
     CreateOrderRequest:
       type: object
       required:
@@ -268,6 +250,24 @@ components:
           type: array
           items:
             type: object
+    OrderStatus:
+      type: string
+      enum:
+      - initial
+      - created
+      - approved
+      - onhold
+      - validated
+      - funded
+      - rejected
+      - canceled
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

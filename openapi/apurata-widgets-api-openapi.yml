@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Apurata aCuotaz POS REST config widgets API
+  title: Apurata aCuotaz POS REST Widgets API
   version: '1.0'
   x-apievangelist-generated: '2026-07-18'
   x-apievangelist-method: generated
@@ -15,13 +15,13 @@ servers:
 - url: https://apurata.com
   description: Production (test and live behavior are selected by the client_id / secret token issued)
 tags:
-- name: widgets
+- name: Widgets
   description: Embeddable checkout widgets (HTML)
 paths:
   /pos/pay-with-apurata-add-on/{amount}:
     get:
       tags:
-      - widgets
+      - Widgets
       operationId: getAddOnWidget
       summary: Get aCuotaz add-on widget
       description: Retrieve a styled HTML/CSS widget that shows installment financing options for a given purchase amount. Authenticated with the Client_id header.
@@ -54,7 +54,7 @@ paths:
   /pos/{client_id}/info-steps:
     get:
       tags:
-      - widgets
+      - Widgets
       operationId: getInfoSteps
       summary: Get aCuotaz info-steps widget
       description: Retrieve a styled HTML widget describing the aCuotaz steps, requirements, and payment options for a checkout page.
