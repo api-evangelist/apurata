@@ -200,6 +200,24 @@ components:
           type: string
         customer_data:
           type: object
+    OrderStatus:
+      type: string
+      enum:
+      - initial
+      - created
+      - approved
+      - onhold
+      - validated
+      - funded
+      - rejected
+      - canceled
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
     CreateOrderRequest:
       type: object
       required:
@@ -250,24 +268,6 @@ components:
           type: array
           items:
             type: object
-    OrderStatus:
-      type: string
-      enum:
-      - initial
-      - created
-      - approved
-      - onhold
-      - validated
-      - funded
-      - rejected
-      - canceled
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

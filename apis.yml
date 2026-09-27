@@ -52,7 +52,7 @@ x-docs-platform-confidence: medium
 x-docs-platform-checked: 2026-09-19
 tags:
 - Company
-- Financial-Services
+- Financial Services
 - Fintech
 - Lending
 - Buy Now Pay Later
@@ -74,12 +74,12 @@ tags_raw:
 - E-commerce
 - Peru
 - Latin America
+- Financial-Services
 apis:
 - aid: apurata:apurata-config-api
-  name: Apurata config API
+  name: Apurata Config API
   description: Financing configuration and limits
   humanURL: https://docs.apurata.com/POS/rest_api/
-  baseURL: https://apurata.com
   tags:
   - Config
   tags_raw:
@@ -96,10 +96,9 @@ apis:
   - type: AsyncAPI
     url: asyncapi/apurata-acuotaz-asyncapi.yml
 - aid: apurata:apurata-orders-api
-  name: Apurata orders API
+  name: Apurata Orders API
   description: Order lifecycle (create, read, confirm, cancel)
   humanURL: https://docs.apurata.com/POS/rest_api/
-  baseURL: https://apurata.com
   tags:
   - Order
   tags_raw:
@@ -116,10 +115,9 @@ apis:
   - type: AsyncAPI
     url: asyncapi/apurata-acuotaz-asyncapi.yml
 - aid: apurata:apurata-refunds-api
-  name: Apurata refunds API
+  name: Apurata Refunds API
   description: Total and partial refunds
   humanURL: https://docs.apurata.com/POS/rest_api/
-  baseURL: https://apurata.com
   tags:
   - Refunds
   tags_raw:
@@ -136,10 +134,9 @@ apis:
   - type: AsyncAPI
     url: asyncapi/apurata-acuotaz-asyncapi.yml
 - aid: apurata:apurata-widgets-api
-  name: Apurata widgets API
+  name: Apurata Widgets API
   description: Embeddable checkout widgets (HTML)
   humanURL: https://docs.apurata.com/POS/rest_api/
-  baseURL: https://apurata.com
   tags:
   - Widgets
   tags_raw:
