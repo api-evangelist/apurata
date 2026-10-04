@@ -240,17 +240,6 @@ components:
           type: string
         message:
           type: string
-    OrderStatus:
-      type: string
-      enum:
-      - initial
-      - created
-      - approved
-      - onhold
-      - validated
-      - funded
-      - rejected
-      - canceled
     Order:
       type: object
       properties:
@@ -268,6 +257,17 @@ components:
           type: string
         customer_data:
           type: object
+    OrderStatus:
+      type: string
+      enum:
+      - initial
+      - created
+      - approved
+      - onhold
+      - validated
+      - funded
+      - rejected
+      - canceled
   securitySchemes:
     bearerAuth:
       type: http
