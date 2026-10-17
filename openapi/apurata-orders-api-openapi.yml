@@ -183,6 +183,34 @@ paths:
       - bearerAuth: []
 components:
   schemas:
+    OrderStatus:
+      type: string
+      enum:
+      - initial
+      - created
+      - approved
+      - onhold
+      - validated
+      - funded
+      - rejected
+      - canceled
+    Order:
+      type: object
+      properties:
+        order_id:
+          type: string
+        amount:
+          type: number
+          format: float
+        status:
+          $ref: '#/components/schemas/OrderStatus'
+        magic_link:
+          type: string
+          format: uri
+        pos_client_id:
+          type: string
+        customer_data:
+          type: object
     CreateOrderRequest:
       type: object
       required:
@@ -240,34 +268,6 @@ components:
           type: string
         message:
           type: string
-    Order:
-      type: object
-      properties:
-        order_id:
-          type: string
-        amount:
-          type: number
-          format: float
-        status:
-          $ref: '#/components/schemas/OrderStatus'
-        magic_link:
-          type: string
-          format: uri
-        pos_client_id:
-          type: string
-        customer_data:
-          type: object
-    OrderStatus:
-      type: string
-      enum:
-      - initial
-      - created
-      - approved
-      - onhold
-      - validated
-      - funded
-      - rejected
-      - canceled
   securitySchemes:
     bearerAuth:
       type: http
