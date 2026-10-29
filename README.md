@@ -64,6 +64,132 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Apurata is a company surfaced as a portfolio company of 500-global and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Apurata (legal name Tecno Creditos S.A.C.) is a Peruvian financial-technology company, authorized by Peru's banking regulator (SBS), that provides fast fully online personal loans and the aCuotaz "buy now, pay later" installment-financing product for e-commerce merchants. Consumers borrow from S/100 to S/1,000 with funding in as little as 29 minutes, repaid across 1-8 installments. For merchants, aCuotaz adds installment checkout with 0% interest options, pays the merchant upfront, and integrates via a REST API, webhooks, and prebuilt payment-gateway plugins for WooCommerce, Magento 2, Shopify, VTEX, Salesforce, OpenCart, and PrestaShop. Apurata also operates aPagos and a Samsung Finance+ financing API.
 
-Backed by: 500-global — https://apurata.com
+**Areas:** Company · Financial Services · Fintech · Lending · Buy Now Pay Later · Installment Payments · Consumer Credit · Payments · E-Commerce · Peru · Latin America
+
+## Apurata on APIs.io
+
+Everything profiled for Apurata is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/apurata/](https://apis.io/providers/apurata/)** — or go straight to one of the APIs or properties below.
+
+### APIs (4)
+
+- [Apurata Config API](https://apis.io/apis/apurata/apurata-config-api/) — Financing configuration and limits
+- [Apurata Orders API](https://apis.io/apis/apurata/apurata-orders-api/) — Order lifecycle (create, read, confirm, cancel)
+- [Apurata Refunds API](https://apis.io/apis/apurata/apurata-refunds-api/) — Total and partial refunds
+- [Apurata Widgets API](https://apis.io/apis/apurata/apurata-widgets-api/) — Embeddable checkout widgets (HTML)
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (2)
+
+Event-driven and webhook contracts.
+
+- [Apurata aCuotaz Order Webhooks](https://apis.io/asyncapis/apurata/apurata-acuotaz-asyncapi/)
+- [Apurata Acuotaz Webhooks](https://apis.io/asyncapis/apurata/apurata-acuotaz-webhooks/)
+
+#### Event channels (1)
+
+Individual events and webhooks the provider emits.
+
+- [/](https://apis.io/channels/apurata/orderevents/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [apurata-acuotaz](https://apis.io/servers/apurata/apurata-acuotaz/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Apurata aCuotaz POS REST config API](https://apis.io/collections/apurata/open-apurata-config-api/)
+- [Apurata aCuotaz POS REST config orders API](https://apis.io/collections/apurata/open-apurata-orders-api/)
+- [Apurata aCuotaz POS REST config refunds API](https://apis.io/collections/apurata/open-apurata-refunds-api/)
+- [Apurata aCuotaz POS REST config widgets API](https://apis.io/collections/apurata/open-apurata-widgets-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Apurata Acuotaz Pos Overlay](https://apis.io/overlays/apurata/apurata-acuotaz-pos-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Apurata Authentication](https://apis.io/security/apurata/apurata-authentication/)
+- [Apurata Domain Security](https://apis.io/security/apurata/apurata-domain-security/)
+- [Apurata Vulnerability Disclosure](https://apis.io/security/apurata/apurata-vulnerability-disclosure/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://apurata.com)
+- [Documentation](https://docs.apurata.com/POS/intro/)
+- [Getting started](https://docs.apurata.com/POS/intro/)
+- [API reference](https://docs.apurata.com/POS/rest_api/)
+- [Sign up](https://apurata.com/app/)
+- [Support](https://apurata.com/blog/contacto/)
+- [Blog](https://apurata.com/blog/)
+- [Security](https://apurata.com/.well-known/vdp.txt)
+- [Terms of service](https://apurata.com/blog/terminos-y-condiciones/)
+- [Privacy policy](https://apurata.com/blog/privacidad/)
+- [GitHub](https://github.com/apurata)
+
+## API Evangelist rating
+
+**Kin Score 37.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 21.7 |
+| Contract governance | 4.5 |
+| Operational transparency | 21.1 |
+| Developer ergonomics | 73.2 |
+| Access clarity | 34.2 |
+
+**Agent readiness 31.4** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 27.7** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/apurata/](https://apis.io/providers/apurata/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Apurata: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/apurata/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
